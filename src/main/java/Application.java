@@ -88,5 +88,23 @@ public class Application {
 
         // Удаляем объект
         employeeDAO.deleteEmployee(denis);
+
+
+        CityDAO cityDAO = new CityDAOImpl();
+
+        City samara = new City(4, "Samara");
+        cityDAO.createCity(samara);
+
+        System.out.println(cityDAO.getCityById(4));
+
+        List<City> list1 = cityDAO.getAllCities();
+        for (City city : list1) {
+            System.out.println(city);
+        }
+
+        City tallin = new City(4, "Tallin");
+        cityDAO.updateCity(tallin);
+
+        cityDAO.deleteCity(tallin);
     }
 }

@@ -24,6 +24,9 @@ public class Employee {
     @Column(name = "city_id")
     private int cityId;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "city")
+    private City city;
 
     public Employee(long id, String firstName, String lastName, String gender, int age, int cityId) {
         this.id = id;
