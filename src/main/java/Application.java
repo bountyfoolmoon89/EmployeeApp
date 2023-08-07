@@ -65,30 +65,6 @@ public class Application {
 //        }
 
 // Создаем объект класса ДАО
-        EmployeeDAO employeeDAO = new EmployeeDAOImpl();
-
-        Employee pavel = new Employee(6, "Pavel", "Konev", "Male", 43,3);
-        // Создаем объект
-        employeeDAO.createEmployee(pavel);
-
-        // Получаем объект по id
-        System.out.println(employeeDAO.getEmployeeById(6));
-
-        // Получаем полный список объектов
-        List<Employee> list = employeeDAO.getAllEmployees();
-
-        for (Employee employee : list) {
-            System.out.println(employee);
-        }
-
-        Employee denis = new Employee(2, "Denis", "Suvorov", "Male", 27,1);
-
-        // Изменяем объект
-        employeeDAO.updateEmployee(denis);
-
-        // Удаляем объект
-        employeeDAO.deleteEmployee(denis);
-
 
         CityDAO cityDAO = new CityDAOImpl();
 
@@ -106,5 +82,35 @@ public class Application {
         cityDAO.updateCity(tallin);
 
         cityDAO.deleteCity(tallin);
+
+        EmployeeDAO employeeDAO = new EmployeeDAOImpl();
+
+        Employee pavel = new Employee(6, "Pavel", "Konev", "Male", 43, tallin);
+        // Создаем объект
+        employeeDAO.createEmployee(pavel);
+
+        // Получаем объект по id
+        System.out.println(employeeDAO.getEmployeeById(6));
+
+        // Получаем полный список объектов
+        List<Employee> list = employeeDAO.getAllEmployees();
+
+        for (Employee employee : list) {
+            System.out.println(employee);
+        }
+
+        Employee denis = new Employee(2, "Denis", "Suvorov", "Male", 27, tallin);
+
+
+        Employee existingEmployee = employeeDAO.getEmployeeById(denis.getId());
+        if (existingEmployee != null) {
+            employeeDAO.updateEmployee(denis);
+        } else {
+            System.out.println("Записи с ID " + denis.getId() + " не существует.");
+        }
+
+        // Удаляем объект
+        employeeDAO.deleteEmployee(denis);
+
     }
 }
